@@ -97,9 +97,9 @@ class ControllerProductLastpieces extends Controller {
 			'limit' => $limit
 		);
 
-		$product_total = $this->model_catalog_product->getTotalProductLastPieces($data);
+		$product_total = $this->model_catalog_productextended->getTotalProductLastPieces($data);
 
-		$results = $this->model_catalog_product->getProductLastPieces($data);
+		$results = $this->model_catalog_productextended->getProductLastPieces($data);
 
 		foreach ($results as $result) {
 			if ($result['image']) {
