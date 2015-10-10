@@ -1,5 +1,9 @@
 <?php
 class ModelCatalogProductextended extends Model {
+	/*
+	 * For now, last pieces only those products what has
+	 * only one piece of it.
+	 */
 
 	public function getProductLastPieces($data = array()) {
 		$this->load->model('catalog/product');
@@ -16,7 +20,7 @@ class ModelCatalogProductextended extends Model {
 				WHERE p.status = '1'
 					AND p.date_available <= NOW()
 					AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'
-					AND p.quantity < 1
+					AND p.quantity > 0 AND p.quantity < 2
 				GROUP BY p.product_id";
 
 		$sort_data = array(
@@ -74,7 +78,7 @@ class ModelCatalogProductextended extends Model {
 				WHERE p.status = '1'
 					AND p.date_available <= NOW()
 					AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'
-					AND p.quantity < 1");
+					AND p.quantity > 0 AND p.quantity < 2");
 
 		if (isset($query->row['total'])) {
 			return $query->row['total'];
